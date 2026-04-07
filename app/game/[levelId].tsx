@@ -19,7 +19,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { GAME_CONSTANTS } from '../../src/styles/theme';
 import { useGameStore, calculateStars } from '../../src/store/gameStore';
 import { evaluateBonusObjective } from '../../src/data/campaign';
-import { getLevelConfig } from '../../src/data/levels';
+import { getLevelConfig, LEVELS } from '../../src/data/levels';
 import { LEVEL1_HAZARDS, LEVEL2_HAZARDS, LEVEL2_SOLUTIONS, LEVEL4_MAP_POINTS } from '../../src/data/hazards';
 import { getShuffledQuestions } from '../../src/data/quizQuestions';
 import { HUD } from '../../src/components/ui/HUD';
@@ -75,6 +75,12 @@ const LEVEL2_TOOL_META: Record<string, {
 
 const LEVEL2_TRAY_COLLAPSED_HEIGHT = 78;
 const LEVEL2_TRAY_EXPANDED_HEIGHT = 154;
+
+export function generateStaticParams() {
+  return LEVELS.map((level) => ({
+    levelId: String(level.id),
+  }));
+}
 
 // ======= LEVEL 1 GAMEPLAY — Hazards in house scene =======
 const Level1Gameplay: React.FC<{
